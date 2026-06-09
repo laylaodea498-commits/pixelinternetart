@@ -1,14 +1,14 @@
-import { createClient } from '@supabase/supabase-js'
+import { createServerClient } from '@supabase/ssr'
 import { cookies } from 'next/headers'
 
 /**
  * Supabase client for server-side usage (App Router).
- * Uses cookies for session management.
+ * Uses the @supabase/ssr package for cookie-based session management.
  */
 export async function createServerSupabaseClient() {
   const cookieStore = await cookies()
 
-  return createClient(
+  return createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
